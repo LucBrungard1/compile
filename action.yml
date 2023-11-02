@@ -1,0 +1,13 @@
+name: 'Build Project'
+description: 'Build a project'
+inputs:
+  name: 
+    description: 'Your name'
+    required: true
+runs:
+  using: "composite"
+  steps: 
+    - run: echo Hello ${{ inputs.name }}.
+      shell: bash
+    - run: echo "Nice to meet you!"
+      shell: pwsh
