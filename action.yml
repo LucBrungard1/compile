@@ -1,13 +1,14 @@
 name: 'Build Project'
 description: 'Build a project'
 inputs:
-  name: 
-    description: 'Your name'
+  project-name: 
+    description: 'The name of the project'
+    required: true
+  project-path:
+    description: 'The path to the project file (.sln or .csproj)'
     required: true
 runs:
   using: "composite"
   steps: 
-    - run: echo Hello ${{ inputs.name }}.
-      shell: bash
-    - run: echo "Nice to meet you!"
-      shell: pwsh
+    - name: restore ${{ inputs.project-name }}
+      run: nuget restore ${{ inputs.project-name }} -ConfigFile .nuget/Nuget.Config -PackagesDirectory packages -NonInteractive
