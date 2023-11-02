@@ -12,3 +12,4 @@ runs:
   steps: 
     - name: restore ${{ inputs.project-name }}
       run: nuget restore ${{ inputs.project-name }} -ConfigFile .nuget/Nuget.Config -PackagesDirectory packages -NonInteractive
+      shell: powershell
