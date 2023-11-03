@@ -7,15 +7,14 @@ inputs:
   project-path:
     description: 'The path to the project file (.sln or .csproj)'
     required: true
-  project-path:
-    description: 'The path to the project file (.sln or .csproj)'
-    required: true
 runs:
   using: "composite"
   steps: 
     - name: restore ${{ inputs.project-name }}
-      run: nuget restore ${{ inputs.project-path }} -ConfigFile .nuget/Nuget.Config -PackagesDirectory packages -NonInteractive
       shell: powershell
+      run: nuget restore ${{ inputs.project-path }} -ConfigFile .nuget/Nuget.Config -PackagesDirectory packages -NonInteractive
+      
 
     - name: Build ${{ inputs.project-name }}
+      shell: powershell
       run: msbuild ${{ inputs.project-path }}
